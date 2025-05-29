@@ -17,3 +17,6 @@ Presentation (20min):
 - Demo (12min)
 
 - Fragen (3min)
+
+# Topology
+  ![IMG_9977](https://github.com/user-attachments/assets/a0b29fbd-f499-49ea-a98c-1d8160b19574)
