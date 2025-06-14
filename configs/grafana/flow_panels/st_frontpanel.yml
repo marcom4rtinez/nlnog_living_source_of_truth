@@ -19,6 +19,18 @@ cells:
     dataRef: oper-state:spine1:e1-3
     fillColor:
       thresholds: *thresholds-operstate
+  spine1:e1-4:
+    dataRef: oper-state:spine1:e1-4
+    fillColor:
+      thresholds: *thresholds-operstate
+  spine1:e1-5:
+    dataRef: oper-state:spine1:e1-5
+    fillColor:
+      thresholds: *thresholds-operstate
+  spine1:e1-6:
+    dataRef: oper-state:spine1:e1-6
+    fillColor:
+      thresholds: *thresholds-operstate
   spine2:e1-1:
     dataRef: oper-state:spine2:e1-1
     fillColor:
@@ -31,12 +43,32 @@ cells:
     dataRef: oper-state:spine2:e1-3
     fillColor:
       thresholds: *thresholds-operstate
+  spine2:e1-4:
+    dataRef: oper-state:spine2:e1-4
+    fillColor:
+      thresholds: *thresholds-operstate
+  spine2:e1-5:
+    dataRef: oper-state:spine2:e1-5
+    fillColor:
+      thresholds: *thresholds-operstate
+  spine2:e1-6:
+    dataRef: oper-state:spine2:e1-6
+    fillColor:
+      thresholds: *thresholds-operstate
   leaf1:e1-49:
     dataRef: oper-state:leaf1:e1-49
     fillColor:
       thresholds: *thresholds-operstate
   leaf1:e1-50:
     dataRef: oper-state:leaf1:e1-50
+    fillColor:
+      thresholds: *thresholds-operstate
+  leaf1:e1-51:
+    dataRef: oper-state:leaf3:e1-51
+    fillColor:
+      thresholds: *thresholds-operstate
+  leaf1:e1-52:
+    dataRef: oper-state:leaf3:e1-52
     fillColor:
       thresholds: *thresholds-operstate
   leaf1:e1-1:
@@ -51,6 +83,14 @@ cells:
     dataRef: oper-state:leaf2:e1-50
     fillColor:
       thresholds: *thresholds-operstate
+  leaf2:e1-51:
+    dataRef: oper-state:leaf3:e1-51
+    fillColor:
+      thresholds: *thresholds-operstate
+  leaf2:e1-52:
+    dataRef: oper-state:leaf3:e1-52
+    fillColor:
+      thresholds: *thresholds-operstate
   leaf2:e1-1:
     dataRef: oper-state:leaf2:e1-1
     fillColor:
@@ -61,6 +101,14 @@ cells:
       thresholds: *thresholds-operstate
   leaf3:e1-50:
     dataRef: oper-state:leaf3:e1-50
+    fillColor:
+      thresholds: *thresholds-operstate
+  leaf3:e1-51:
+    dataRef: oper-state:leaf3:e1-51
+    fillColor:
+      thresholds: *thresholds-operstate
+  leaf3:e1-52:
+    dataRef: oper-state:leaf3:e1-52
     fillColor:
       thresholds: *thresholds-operstate
   leaf3:e1-1:
