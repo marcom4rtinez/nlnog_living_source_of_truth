@@ -53,6 +53,15 @@ cells:
     label: *label-config
     strokeColor:
       thresholds: *thresholds-traffic
+  spine1:e1-4:leaf1:e1-51:
+    dataRef: oper-state:spine1:e1-4
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:spine1:e1-4:leaf3:e1-51:
+    dataRef: spine1:e1-4:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
   spine2:e1-1:leaf1:e1-50:
     dataRef: oper-state:spine2:e1-1
     fillColor:
