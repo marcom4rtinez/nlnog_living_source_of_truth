@@ -27,3 +27,7 @@ kubectl apply -f sdc/connectionprofile.yml
 kubectl apply -f sdc/syncprofile.yml
 kubectl apply -f sdc/discoveryrule.yml
 ```
+
+
+
+kubectl label runningconfig leaf1 sdcio.dev/node=leaf1

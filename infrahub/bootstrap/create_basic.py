@@ -133,6 +133,7 @@ GROUPS = (
     ("cisco_devices", "Cisco Devices"),
     ("arista_devices", "Arista Devices"),
     ("juniper_devices", "Juniper Devices"),
+    ("nokia_devices", "Nokia Devices"),
     ("upstream_interfaces", "Upstream Interface"),
     ("core_interfaces", "Core Interface"),
     ("network_services", "Provisioned network services"),
