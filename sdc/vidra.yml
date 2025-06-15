@@ -3,13 +3,13 @@ kind: ConfigMap
 metadata:
   name: vidra-config
   labels:
-    app: vidra # Important: This label is used to identify the operator's resources.
+    app: vidra
   namespace: vidra-system
 data:
-  requeueSyncAfter: "1m" # How often Vidra syncs with Infrahub. (if you do not want to use the default value of 1 minute)
-  requeueResourcesAfter: "1m" # How often managed resources are reconciled. (if you do not want to use the default value of 10 minutes)
-  queryName: "ArtifactIDs" # Infrahub GraphQL query name for getting Artifact IDs. (if you do not want to use the default value of "ArtifactIDs")
-  eventBasedReconcile: "true" # Enable event-based reconciliation. (default is false)
+  requeueSyncAfter: "20s"
+  requeueResourcesAfter: "20s"
+  queryName: "ArtifactIDs"
+  eventBasedReconcile: "true"
 ---
 apiVersion: v1
 kind: Secret
@@ -17,7 +17,7 @@ metadata:
   name: infrahub-credentials
   namespace: vidra-system
   labels:
-    infrahub-api-url: "192.168.97.1" # Important: This label is used to identify the operator's resources.
+    infrahub-api-url: "192.168.97.1"
 data:
   username: YWRtaW4=
   password: aW5mcmFodWI=
@@ -25,7 +25,7 @@ data:
 apiVersion: infrahub.operators.com/v1alpha1
 kind: InfrahubSync
 metadata:
-  name: sync-test-webserver
+  name: sdc-interfaces
   labels:
     app.kubernetes.io/name: vidra
     app.kubernetes.io/managed-by: kustomize
@@ -34,3 +34,5 @@ spec:
     infrahubAPIURL: "http://192.168.97.1:8000"
     targetBranch: "main"
     artefactName: "sdc_srlinux_interface_artifact"
+  destination:
+    reconcileOnEvents: true
