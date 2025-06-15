@@ -1,0 +1,62 @@
+apiVersion: config.sdcio.dev/v1alpha1
+kind: ConfigSet
+metadata:
+  name: spine1-interface
+  namespace: default
+spec:
+  target:
+    targetSelector:
+      matchLabels:
+        sdcio.dev/node: spine1
+  priority: 40
+  config:
+    - path: /
+      value:
+        interface:
+          - name: ethernet-1/2
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ip-mtu: 9000
+                ipv4:
+                  admin-state: enable
+                  address:
+                    - ip-prefix: 192.168.21.1/31
+          - name: ethernet-1/3
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ip-mtu: 9000
+                ipv4:
+                  admin-state: enable
+                  address:
+                    - ip-prefix: 192.168.31.1/31
+          - name: ethernet-1/4
+            admin-state: enable
+          - name: ethernet-1/5
+            admin-state: enable
+          - name: ethernet-1/6
+            admin-state: enable
+          - name: ethernet-1/1
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ip-mtu: 9000
+                ipv4:
+                  admin-state: enable
+                  address:
+                    - ip-prefix: 192.168.11.1/31
+        network-instance:
+          - name: default
+            protocols:
+              bgp:
+                afi-safi:
+                  - afi-safi-name: ipv4-unicast
+                    multipath:
+                      maximum-paths: 8
+                  - afi-safi-name: ipv6-unicast
+                    multipath:
+                      maximum-paths: 8

@@ -29,5 +29,11 @@ kubectl apply -f sdc/discoveryrule.yml
 ```
 
 
+```
 
-kubectl label runningconfig leaf1 sdcio.dev/node=leaf1
+helm install vidra-operator oci://ghcr.io/infrahub-operator/vidra/helm-charts/vidra-operator --namespace vidra-system --create-namespace
+kubectl apply -f vidra.yaml
+
+
+k label target.inv.sdcio.dev/spine1 sdcio.dev/node="spine1"
+```
