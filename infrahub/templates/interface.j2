@@ -13,15 +13,17 @@ spec:
     - path: /
       value:
         interface:
-          - name: ethernet-1/1
-            admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+        {% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
+          - name: {{ interface.node.name.value }}
+            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
 
-            description: {{ data.InfraDevice.edges[0].node.interfaces.edges[0].node.description.value }}
+            description: {{ interface.node.description.value }}
             subinterface:
               - index: 0
                 type: bridged
                 admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
 
+        {% endfor %}
         network-instance:
           - name: default
             protocols:
