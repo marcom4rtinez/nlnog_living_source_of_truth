@@ -64,11 +64,11 @@ cells:
     fillColor:
       thresholds: *thresholds-operstate
   leaf1:e1-51:
-    dataRef: oper-state:leaf3:e1-51
+    dataRef: oper-state:leaf1:e1-51
     fillColor:
       thresholds: *thresholds-operstate
   leaf1:e1-52:
-    dataRef: oper-state:leaf3:e1-52
+    dataRef: oper-state:leaf1:e1-52
     fillColor:
       thresholds: *thresholds-operstate
   leaf1:e1-1:
@@ -84,11 +84,11 @@ cells:
     fillColor:
       thresholds: *thresholds-operstate
   leaf2:e1-51:
-    dataRef: oper-state:leaf3:e1-51
+    dataRef: oper-state:leaf2:e1-51
     fillColor:
       thresholds: *thresholds-operstate
   leaf2:e1-52:
-    dataRef: oper-state:leaf3:e1-52
+    dataRef: oper-state:leaf2:e1-52
     fillColor:
       thresholds: *thresholds-operstate
   leaf2:e1-1:
