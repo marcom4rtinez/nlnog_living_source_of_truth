@@ -12,7 +12,7 @@ queries:
 
 artifact_definitions:
   - name: "sdc_srlinux_interface_artifact"
-    artifact_name: "interface"
+    artifact_name: "sdc_srlinux_interface_artifact"
     parameters:
       device_name: "name__value"
     content_type: "application/yaml"
