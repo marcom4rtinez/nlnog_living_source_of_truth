@@ -1,0 +1,104 @@
+apiVersion: config.sdcio.dev/v1alpha1
+kind: ConfigSet
+metadata:
+  name: leaf1-full-config
+  namespace: default
+spec:
+  target:
+    targetSelector:
+      matchLabels:
+        sdcio.dev/node: leaf1
+  priority: 30
+  config:
+    - path: /
+      value:
+        interface:
+          - name: ethernet-1/49
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ipv4:
+                  admin-state: enable
+                  address:
+                    ip-prefix: 192.168.11.0/31
+                ip-mtu: 9000
+          - name: ethernet-1/50
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ipv4:
+                  admin-state: enable
+                  address:
+                    ip-prefix: 192.168.12.0/31
+                ip-mtu: 9000
+          - name: system0
+            admin-state: enable
+            subinterface:
+              - index: 0
+                admin-state: enable
+                ipv4:
+                  admin-state: enable
+                  address:
+                    ip-prefix: 10.0.1.1/32
+        network-instance:
+          - name: default
+            interface:
+              - name: ethernet-1/49.0
+              - name: ethernet-1/50.0
+              - name: system0.0
+            ip-forwarding:
+              receive-ipv4-check: false
+            protocols:
+              bgp:
+                admin-state: enable
+                router-id: 10.0.1.1
+                autonomous-system: 101
+                ebgp-default-policy:
+                  import-reject-all: false
+                  export-reject-all: false
+                afi-safi:
+                  - afi-safi-name: ipv4-unicast
+                    admin-state: enable
+                    multipath:
+                      allow-multiple-as: true
+                      maximum-paths: 64
+                group:
+                  - group-name: eBGP
+                    peer-as: 201
+                    afi-safi:
+                      - afi-safi-name: ipv4-unicast
+                        admin-state: enable
+                    export-policy: export-local
+                  - group-name: iBGP-overlay
+                    local-as:
+                      as-number: 100
+                    peer-as: 100
+                    afi-safi:
+                      - afi-safi-name: ipv4-unicast
+                        admin-state: enable
+                      - afi-safi-name: evpn
+                        admin-state: disable
+                    import-policy: all
+                    export-policy: all
+                    timers:
+                      connect-retry: 1
+                      minimum-advertisement-interval: 1
+                neighbor:
+                  - peer-address: 192.168.11.1
+                    peer-group: eBGP
+                    peer-as: 201
+                    admin-state: enable
+                  - peer-address: 192.168.12.1
+                    peer-group: eBGP
+                    peer-as: 202
+                    admin-state: enable
+                  - peer-address: 10.0.2.1
+                    peer-group: iBGP-overlay
+                    transport:
+                      local-address: 10.0.1.1
+                  - peer-address: 10.0.2.2
+                    peer-group: iBGP-overlay
+                    transport:
+                      local-address: 10.0.1.1
