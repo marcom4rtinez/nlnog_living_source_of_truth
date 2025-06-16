@@ -8,19 +8,15 @@ kind create cluster -n swinog
 ```
 Setup sdc
 ```bash
-# Install Cert-Manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
-# If the SDCIO resources, see below are being applied to fast, the webhook of the cert-manager is not already there.
-# Hence we need to wait for the resource be become Available
 kubectl wait -n cert-manager --for=condition=Available=True --timeout=300s deployments.apps cert-manager-webhook
 
-# Install SDC Components
 kubectl apply -f https://docs.sdcio.dev/artifacts/basic-usage/colocated.yaml
 
-# Check if sdc is running should be 1 config server pod
 kubectl get pods -n network-system
 
-# Connect SDC to clab devices
+
+#check if the same https://docs.sdcio.dev/getting-started/basic-usage/
 kubectl apply -f sdc/schema.yml
 kubectl apply -f sdc/connectionsecret.yml
 kubectl apply -f sdc/connectionprofile.yml
@@ -29,8 +25,28 @@ kubectl apply -f sdc/discoveryrule.yml
 ```
 
 
+Install Infrahub via devcontainer
+
+Add repository on infrahub UI --> write GQL query
+
+```
+mutation {
+  CorePasswordCredentialCreate(
+    data: {
+      name: { value: "my-git-credential" },
+      username: { value: "MY_USERNAME" },
+      password: { value: "MY_TOKEN_OR_PASSWORD" }
+    }
+  ) {
+    ok
+    object {
+      hfid
+    }
+  }
+}
 ```
 
+```
 helm install vidra-operator oci://ghcr.io/infrahub-operator/vidra/helm-charts/vidra-operator --namespace vidra-system --create-namespace
 kubectl apply -f vidra.yaml
 
