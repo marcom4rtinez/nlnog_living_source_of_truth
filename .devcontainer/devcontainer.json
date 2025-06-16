@@ -1,0 +1,50 @@
+{
+    "name": "infrahub-demo-dc-fabric",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "customizations": {
+        "settings": {
+            "python.pythonPath": "/usr/bin/python3",
+            "terminal.integrated.shell.linux": "/bin/bash",
+            "python.venvPath": "/workspace/.venv",
+            "python.linting.enabled": true
+        },
+        "vscode": {
+            "extensions": [
+                "pomdtr.excalidraw-editor",
+                "wholroyd.jinja",
+                "ms-python.vscode-pylance",
+                "shardulm94.trailing-spaces",
+                "nickmillerdev.pytest-fixtures",
+                "yzhang.markdown-all-in-one",
+                "GraphQL.vscode-graphql-syntax",
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "remoteEnv": {
+        "INFRAHUB_ADDRESS": "http://192.168.97.1:8000",
+        "INFRAHUB_API_TOKEN": "06438eb2-8019-4776-878c-0941b1f1d1ec",
+        "LINUX_HOST_DOCKER_IMAGE": "registry.opsmill.io/external/alpine-host:v3.1.1"
+    },
+    "runArgs": [
+        "--privileged"
+    ],
+    "onCreateCommand": "./.devcontainer/onCreateCommand.sh",
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:latest": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/github-cli:latest": {
+            "version": "latest"
+        }
+    },
+    "hostRequirements": {
+        "cpus": 8,
+        "memory": "16gb"
+    }
+}

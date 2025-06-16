@@ -1,0 +1,34 @@
+apiVersion: config.sdcio.dev/v1alpha1
+kind: ConfigSet
+metadata:
+  name: interface_{{ data.InfraDevice.edges[0].node.name.value }}
+  namespace: default
+spec:
+  target:
+    targetSelector:
+      matchLabels:
+        sdcio.dev/node: {{ data.InfraDevice.edges[0].node.name.value }}
+  priority: 10
+  config:
+    - path: /
+      value:
+        interface:
+        {% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
+          - name: {{ interface.node.name.value }}
+            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+
+            description: {{ interface.node.description.value }}
+            subinterface:
+              - index: 0
+                type: bridged
+                admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+
+        {% endfor %}
+        network-instance:
+          - name: default
+            protocols:
+              bgp:
+                afi-safi:
+                  - afi-safi-name: ipv4-unicast
+                    multipath:
+                      maximum-paths: 8

@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vidra-config
+  labels:
+    app: vidra
+  namespace: vidra-system
+data:
+  requeueSyncAfter: "20s"
+  requeueResourcesAfter: "20s"
+  queryName: "ArtifactIDs"
+  eventBasedReconcile: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: infrahub-credentials
+  namespace: vidra-system
+  labels:
+    infrahub-api-url: "192.168.97.1"
+data:
+  username: YWRtaW4=
+  password: aW5mcmFodWI=
+---
+apiVersion: infrahub.operators.com/v1alpha1
+kind: InfrahubSync
+metadata:
+  name: sdc-interfaces
+  labels:
+    app.kubernetes.io/name: vidra
+    app.kubernetes.io/managed-by: kustomize
+spec:
+  source:
+    infrahubAPIURL: "http://192.168.97.1:8000"
+    targetBranch: "main"
+    artefactName: "sdc_srlinux_interface_artifact"
+  destination:
+    reconcileOnEvents: true

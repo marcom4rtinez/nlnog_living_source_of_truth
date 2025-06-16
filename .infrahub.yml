@@ -1,0 +1,20 @@
+---
+jinja2_transforms:
+  - name: "sdc_srlinux_interface"
+    query: "sdc_srlinux_interface"
+    template_path: "infrahub/templates/interface.j2"
+
+queries:
+  - name: sdc_srlinux_interface
+    file_path: "infrahub/templates/interface.gql"
+  - name: ArtifactIDs
+    file_path: "infrahub/templates/artifactid.gql"
+
+artifact_definitions:
+  - name: "sdc_srlinux_interface_artifact"
+    artifact_name: "sdc_srlinux_interface_artifact"
+    parameters:
+      device_name: "name__value"
+    content_type: "application/yaml"
+    targets: "nokia_devices"
+    transformation: "sdc_srlinux_interface"
