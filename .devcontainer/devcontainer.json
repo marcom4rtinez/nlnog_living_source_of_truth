@@ -47,7 +47,8 @@
         "ghcr.io/devcontainers/features/github-cli:1": {},
         "ghcr.io/devcontainers-extra/features/kind:1": {},
         "ghcr.io/devcontainers-extra/features/poetry:2": {},
-        "ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {}
+        "ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {},
+        "ghcr.io/devcontainers-extra/features/helmfile:1": {}
     },
     "hostRequirements": {
         "cpus": 8,

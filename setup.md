@@ -29,11 +29,9 @@ kubectl apply -f sdc/discoveryrule.yml
 ```
 
 
-Install Infrahub via devcontainer
-
 Add repository on infrahub UI --> write GQL query
 
-```
+```graphql
 mutation {
   CorePasswordCredentialCreate(
     data: {
@@ -50,9 +48,9 @@ mutation {
 }
 ```
 
-```
+```bash
 helm install vidra-operator oci://ghcr.io/infrahub-operator/vidra/helm-charts/vidra-operator --namespace vidra-system --create-namespace
-kubectl apply -f vidra.yaml
+kubectl apply -f vidra.yml
 
 
 k label target.inv.sdcio.dev/spine1 sdcio.dev/node="spine1"
