@@ -20,6 +20,7 @@ spec:
             description: {{ interface.node.description.value }}
             {% if interface.node.__typename == "InfraInterfaceL2"%}
             vlan-tagging: {% if interface.node.l2_mode.value == "Access"%} "false" {% else %}"true"{% endif %}
+
             subinterface:
               - index: 0
                 type: bridged
