@@ -1,26 +1,46 @@
 query device_info($device_name: String!) {
-    InfraDevice(name__value: $device_name) {
-        edges {
-            node {
-                name {
-                    value
-                }
-                interfaces {
-                edges {
-                    node {
-                    name {
-                        value
-                    }
-                    description {
-                        value
-                    }
-                    enabled {
-                        value
-                    }
-                    }
-                }
-                }
-            }
+  InfraDevice(name__value: $device_name) {
+    edges {
+      node {
+        name {
+          value
         }
+        interfaces {
+          edges {
+            node {
+              __typename
+              name {
+                value
+              }
+              description {
+                value
+              }
+              enabled {
+                value
+              }
+              mtu {
+                value
+              }
+              ... on InfraInterfaceL2 {
+                l2_mode {
+                  value
+                }
+              }
+              ... on InfraInterfaceL3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      address {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }

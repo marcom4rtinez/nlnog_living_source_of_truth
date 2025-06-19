@@ -15,13 +15,16 @@ spec:
         interface:
         {% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
           - name: {{ interface.node.name.value }}
-            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
 
             description: {{ interface.node.description.value }}
+            {% if interface.node.__typename == "InfraInterfaceL2"%}
+            vlan-tagging: {% if interface.node.l2_mode.value == "Access"%} "false" {% else %}"true"{% endif %}
             subinterface:
               - index: 0
                 type: bridged
-                admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+                admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
+            {% endif %}
 
         {% endfor %}
         network-instance:
