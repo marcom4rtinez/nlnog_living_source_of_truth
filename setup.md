@@ -6,6 +6,10 @@ Important note: First start the containerlab environment, then create the kind c
 clab deploy swinog.clab.yml
 kind create cluster -n swinog
 ```
+Setup infrahub
+```bash
+infrahub/setupInfrahub.sh
+```
 Setup sdc
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml

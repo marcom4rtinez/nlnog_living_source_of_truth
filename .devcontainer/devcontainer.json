@@ -1,9 +1,10 @@
 {
     "name": "infrahub-demo-dc-fabric",
-    "build": {
-        "dockerfile": "./Dockerfile",
-        "context": "."
-    },
+    "image": "ghcr.io/srl-labs/containerlab/devcontainer-dind-slim:0.68.0",
+    // "build": {
+    //     "dockerfile": "./Dockerfile",
+    //     "context": "."
+    // },
     "customizations": {
         "settings": {
             "python.pythonPath": "/usr/bin/python3",
@@ -26,25 +27,31 @@
     },
     "remoteUser": "vscode",
     "remoteEnv": {
-        "INFRAHUB_ADDRESS": "http://192.168.97.1:8000",
+        "INFRAHUB_ADDRESS": "http://localhost:8000",
         "INFRAHUB_API_TOKEN": "06438eb2-8019-4776-878c-0941b1f1d1ec",
         "LINUX_HOST_DOCKER_IMAGE": "registry.opsmill.io/external/alpine-host:v3.1.1"
     },
-    "runArgs": [
-        "--privileged"
-    ],
-    "onCreateCommand": "./.devcontainer/onCreateCommand.sh",
-    "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+    // "runArgs": [
+    //     "--network=host",
+    //     "--pid=host",
+    //     "--privileged"
+    // ],
+    // "mounts": [
+    //     "type=bind,src=/run/docker/netns,dst=/run/docker/netns",
+    //     "type=bind,src=/var/lib/docker,dst=/var/lib/docker",
+    //     "type=bind,src=/lib/modules,dst=/lib/modules"
+    // ],
+    // "onCreateCommand": "./.devcontainer/onCreateCommand.sh",
+    // "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
     "features": {
-        "ghcr.io/devcontainers/features/docker-outside-of-docker:latest": {
-            "version": "latest"
-        },
-        "ghcr.io/devcontainers/features/github-cli:latest": {
-            "version": "latest"
-        }
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers-extra/features/kind:1": {},
+        "ghcr.io/devcontainers-extra/features/poetry:2": {},
+        "ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {}
     },
     "hostRequirements": {
         "cpus": 8,
-        "memory": "16gb"
+        "memory": "16gb",
+        "storage": "32gb"
     }
 }
