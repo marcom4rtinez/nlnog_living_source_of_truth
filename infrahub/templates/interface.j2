@@ -6,8 +6,7 @@ metadata:
 spec:
   target:
     targetSelector:
-      matchExpressions:
-        key:
+      matchLabels:
         sdcio.dev/node: {{ data.InfraDevice.edges[0].node.name.value }}
   priority: 10
   config:
