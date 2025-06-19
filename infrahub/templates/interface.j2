@@ -35,7 +35,6 @@ spec:
                   address:
                     - ip-prefix: {{ interface.node.ip_addresses.edges[0].node.address.value }}
             {% endif %}
-
         {% endfor %}
         network-instance:
           - name: default
