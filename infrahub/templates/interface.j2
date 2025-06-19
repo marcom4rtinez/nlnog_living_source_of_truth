@@ -28,10 +28,10 @@ spec:
                 admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
             {% endif %}
             {% if interface.node.__typename == "InfraInterfaceL3"%}
-
             subinterface:
               - index: 0
                 admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
+
                 ipv4:
                   address:
                     - ip-prefix: {{ interface.node.ip_addresses.edges[0].node.address.value }}
