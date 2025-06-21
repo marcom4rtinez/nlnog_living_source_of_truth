@@ -378,12 +378,12 @@ nodes:
       - "InfraInterface"
       - "InfraEndpoint"
       - "CoreArtifactTarget"
-    relationships:
-      - name: ip_addresses
-        peer: InfraIPAddress
-        optional: true
-        cardinality: many
-        kind: Component
+    # relationships:
+    #   - name: ip_addresses
+    #     peer: InfraIPAddress
+    #     optional: true
+    #     cardinality: many
+    #     kind: Component
   - name: InterfaceL2
     namespace: Infra
     description: "Network Layer 2 Interface"

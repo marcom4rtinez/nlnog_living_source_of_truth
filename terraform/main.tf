@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "infrahub" {
-  api_key         = "184b2834-a7a0-3fa7-3bbd-c51e4768f048"
+  api_key         = "184b2c4a-bc9f-e119-32fa-c51ecfe83c9b"
   infrahub_server = "http://localhost:8000"
-  branch          = "main"
+  branch          = "enable"
 }
 
 
@@ -25,6 +25,11 @@ data "infrahub_topology" "fra05-pod1" {
 data "infrahub_devicetype" "nokia_spines" {
   device_type_name = "7220 IXR-D3L"
 }
+
+data "infrahub_devicetype" "nokia_leafs" {
+  device_type_name = "7220 IXR-D2L"
+}
+
 
 data "infrahub_autonomoussystem" "verizon" {
   as_name = "AS701"
@@ -67,10 +72,9 @@ resource "infrahub_device" "create_spines" {
   role_value              = "spine"
 }
 
-resource "infrahub_l2interface" "ethernet1-1" {
+resource "infrahub_l3interface" "ethernet1-1" {
   for_each          = toset([for i in range(1, 3) : format("spine%d", i)])
   description_value = format("%s - ethernet-1/1", each.key)
-  l2_mode_value     = "Access"
   role_value        = "leaf"
   enabled_value     = true
   name_value        = "ethernet-1/1"
@@ -80,10 +84,9 @@ resource "infrahub_l2interface" "ethernet1-1" {
 
 
 
-resource "infrahub_l2interface" "ethernet1-2" {
+resource "infrahub_l3interface" "ethernet1-2" {
   for_each          = toset([for i in range(1, 3) : format("spine%d", i)])
   description_value = format("%s - ethernet-1/2", each.key)
-  l2_mode_value     = "Access"
   role_value        = "leaf"
   enabled_value     = true
   name_value        = "ethernet-1/2"
@@ -94,9 +97,27 @@ resource "infrahub_l2interface" "ethernet1-2" {
 
 
 
-# data "infrahub_devices" "all_devices" {
-# }
+resource "infrahub_device" "create_leaf" {
+  for_each                = toset([for i in range(1, 4) : format("leaf%d", i)])
+  name_value              = each.key
+  asn_node_id             = data.infrahub_autonomoussystem.verizon.id
+  device_type_node_id     = data.infrahub_devicetype.nokia_leafs.id
+  location_node_id        = data.infrahub_country.usa.id
+  platform_node_id        = data.infrahub_platform.srlinux.id
+  primary_address_node_id = data.infrahub_ipaddressquery.mgmt_address_0.id
+  status_value            = "active"
+  topology_node_id        = data.infrahub_topology.fra05-pod1.id
+  role_value              = "leaf"
+}
 
-# output "devices_all_devices" {
-#   value = data.infrahub_devices.all_devices
-# }
+
+resource "infrahub_l2interface" "ethernet1-1" {
+  for_each          = toset([for i in range(1, 4) : format("leaf%d", i)])
+  description_value = format("%s - ethernet-1/1", each.key)
+  l2_mode_value     = "Access"
+  role_value        = "leaf"
+  enabled_value     = true
+  name_value        = "ethernet-1/1"
+  device_node_id    = infrahub_device.create_leaf[each.key].id
+  status_value      = "active"
+}
