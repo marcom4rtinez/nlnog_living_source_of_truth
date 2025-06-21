@@ -3,6 +3,9 @@ jinja2_transforms:
   - name: "sdc_srlinux_interface"
     query: "sdc_srlinux_interface"
     template_path: "templates/interface.j2"
+  - name: "sdc_srlinux_bgp"
+    query: "sdc_srlinux_bgp"
+    template_path: "templates/bgp.j2"
 
 queries:
   - name: sdc_srlinux_interface
@@ -18,3 +21,10 @@ artifact_definitions:
     content_type: "application/yaml"
     targets: "nokia_devices"
     transformation: "sdc_srlinux_interface"
+  - name: "sdc_srlinux_bgp_artifact"
+    artifact_name: "bgp"
+    parameters:
+      device_name: "name__value"
+    content_type: "application/yaml"
+    targets: "nokia_devices"
+    transformation: "sdc_srlinux_bgp"
