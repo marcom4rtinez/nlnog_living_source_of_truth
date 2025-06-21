@@ -44,6 +44,19 @@ mutation {
     }
   }
 }
+
+
+
+#terraform setup
+mutation {
+  InfrahubAccountTokenCreate(data: {name: "terraform"}) {
+    object {
+      token {
+        value
+      }
+    }
+  }
+}
 ```
 
 ```
@@ -53,3 +66,4 @@ kubectl apply -f vidra.yaml
 
 k label target.inv.sdcio.dev/spine1 sdcio.dev/node="spine1"
 ```
+
