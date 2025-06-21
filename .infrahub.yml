@@ -10,6 +10,8 @@ jinja2_transforms:
 queries:
   - name: sdc_srlinux_interface
     file_path: "infrahub/templates/interface.gql"
+  - name: sdc_srlinux_bgp
+    file_path: "infrahub/templates/bgp.gql"
   - name: ArtifactIDs
     file_path: "infrahub/templates/artifactid.gql"
 
