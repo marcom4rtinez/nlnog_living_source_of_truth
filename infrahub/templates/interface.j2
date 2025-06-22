@@ -36,3 +36,15 @@ spec:
                     - ip-prefix: {{ interface.node.full_ipv4.value }}
             {% endif %}
         {% endfor %}
+
+        network-instance:
+          - name: default
+            protocols:Add commentMore actions
+              bgp:
+                afi-safi:
+                  - afi-safi-name: ipv4-unicast
+                    multipath:
+                      maximum-paths: 8
+                  - afi-safi-name: ipv6-unicast
+                    multipath:
+                      maximum-paths: 8
