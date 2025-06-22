@@ -17,3 +17,9 @@ sleep 30
 
 # Load infra-data
 poetry run invoke load-data
+
+cd ..
+
+helm install vidra-operator oci://ghcr.io/infrahub-operator/vidra/helm-charts/vidra-operator --namespace vidra-system --create-namespace
+
+kubectl apply -f vidra.yml
