@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "infrahub" {
-  api_key         = "184b73b6-77a8-2161-2dcf-c512a7d01746"
+  api_key         = "184b74e2-2b81-61ae-338a-c5191e74e5e3"
   infrahub_server = "http://localhost:8000"
   branch          = "main"
 }

@@ -21,7 +21,7 @@ Setup sdc
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
 kubectl wait -n cert-manager --for=condition=Available=True --timeout=300s deployments.apps cert-manager-webhook
-kubectl apply -f sdc/colocated.yaml
+kubectl apply -f sdc/colocated.yml
 kubectl apply -f sdc/schema.yml
 kubectl apply -f sdc/connectionsecret.yml
 kubectl apply -f sdc/connectionprofile.yml
