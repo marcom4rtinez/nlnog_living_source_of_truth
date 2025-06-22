@@ -15,20 +15,36 @@ spec:
         interface:
         {% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
           - name: {{ interface.node.name.value }}
-            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+            admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
 
             description: {{ interface.node.description.value }}
+            {% if interface.node.__typename == "InfraInterfaceL2"%}
+            vlan-tagging: {% if interface.node.l2_mode.value == "Access"%} "false" {% else %}"true"{% endif %}
+
             subinterface:
               - index: 0
                 type: bridged
-                admin-state: {% if data.InfraDevice.edges[0].node.interfaces.edges[0].node.enabled.value == True %}"enable" {% else %}"disable"{%endif%}
+                admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
+            {% endif %}
+            {% if interface.node.__typename == "InfraInterfaceL3"%}
+            subinterface:
+              - index: 0
+                admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
 
+                ipv4:
+                  address:
+                    - ip-prefix: {{ interface.node.ip_addresses.edges[0].node.address.value }}
+            {% endif %}
         {% endfor %}
+
         network-instance:
           - name: default
             protocols:
               bgp:
                 afi-safi:
                   - afi-safi-name: ipv4-unicast
+                    multipath:
+                      maximum-paths: 8
+                  - afi-safi-name: ipv6-unicast
                     multipath:
                       maximum-paths: 8

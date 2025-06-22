@@ -1,7 +1,7 @@
 apiVersion: inv.sdcio.dev/v1alpha1
 kind: DiscoveryRule
 metadata:
-  name: dr-static
+  name: dr-static-spine1
   namespace: default
 spec:
   period: 1m
@@ -12,12 +12,96 @@ spec:
   addresses:
   - address: 172.80.80.21
     hostName: spine1
+  targetConnectionProfiles:
+  - credentials: srl.nokia.sdcio.dev
+    connectionProfile: gnmi-skipverify
+    syncProfile: gnmi-get
+  targetTemplate:
+    labels:
+      sdcio.dev/region: us-east
+      sdcio.dev/node: spine1
+---
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: DiscoveryRule
+metadata:
+  name: dr-static-spine2
+  namespace: default
+spec:
+  period: 1m
+  concurrentScans: 2
+  defaultSchema:
+    provider: srl.nokia.sdcio.dev
+    version: 24.10.1
+  addresses:
   - address: 172.80.80.22
     hostName: spine2
+  targetConnectionProfiles:
+  - credentials: srl.nokia.sdcio.dev
+    connectionProfile: gnmi-skipverify
+    syncProfile: gnmi-get
+  targetTemplate:
+    labels:
+      sdcio.dev/region: us-east
+      sdcio.dev/node: spine2
+---
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: DiscoveryRule
+metadata:
+  name: dr-static-leaf1
+  namespace: default
+spec:
+  period: 1m
+  concurrentScans: 2
+  defaultSchema:
+    provider: srl.nokia.sdcio.dev
+    version: 24.10.1
+  addresses:
   - address: 172.80.80.11
     hostName: leaf1
+  targetConnectionProfiles:
+  - credentials: srl.nokia.sdcio.dev
+    connectionProfile: gnmi-skipverify
+    syncProfile: gnmi-get
+  targetTemplate:
+    labels:
+      sdcio.dev/region: us-east
+      sdcio.dev/node: leaf1
+---
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: DiscoveryRule
+metadata:
+  name: dr-static-leaf2
+  namespace: default
+spec:
+  period: 1m
+  concurrentScans: 2
+  defaultSchema:
+    provider: srl.nokia.sdcio.dev
+    version: 24.10.1
+  addresses:
   - address: 172.80.80.12
     hostName: leaf2
+  targetConnectionProfiles:
+  - credentials: srl.nokia.sdcio.dev
+    connectionProfile: gnmi-skipverify
+    syncProfile: gnmi-get
+  targetTemplate:
+    labels:
+      sdcio.dev/region: us-east
+      sdcio.dev/node: leaf2
+---
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: DiscoveryRule
+metadata:
+  name: dr-static-leaf3
+  namespace: default
+spec:
+  period: 1m
+  concurrentScans: 2
+  defaultSchema:
+    provider: srl.nokia.sdcio.dev
+    version: 24.10.1
+  addresses:
   - address: 172.80.80.13
     hostName: leaf3
   targetConnectionProfiles:
@@ -27,3 +111,4 @@ spec:
   targetTemplate:
     labels:
       sdcio.dev/region: us-east
+      sdcio.dev/node: leaf3
