@@ -1,0 +1,39 @@
+query bgp_info($device_name: String!) {
+  InfraBGPSession(device__name__value: $device_name) {
+    edges {
+      node {
+        peer_group {
+          node {
+            name {
+              value
+            }
+            export_policies {
+              value
+            }
+          }
+        }
+        remote_ip {
+          node {
+            address {
+              ip
+            }
+          }
+        }
+        remote_as {
+          node {
+            asn {
+              value
+            }
+          }
+        }
+        device {
+          node {
+            name {
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

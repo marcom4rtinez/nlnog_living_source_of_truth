@@ -17,7 +17,7 @@ metadata:
   name: infrahub-credentials
   namespace: vidra-system
   labels:
-    infrahub-api-url: "192.168.97.1"
+    infrahub-api-url: "infrahub-server"
 data:
   username: YWRtaW4=
   password: aW5mcmFodWI=
@@ -31,8 +31,23 @@ metadata:
     app.kubernetes.io/managed-by: kustomize
 spec:
   source:
-    infrahubAPIURL: "http://192.168.97.1:8000"
+    infrahubAPIURL: "http://infrahub-server:8000"
     targetBranch: "main"
     artefactName: "sdc_srlinux_interface_artifact"
+  destination:
+    reconcileOnEvents: true
+---
+apiVersion: infrahub.operators.com/v1alpha1
+kind: InfrahubSync
+metadata:
+  name: sdc-bgp
+  labels:
+    app.kubernetes.io/name: vidra
+    app.kubernetes.io/managed-by: kustomize
+spec:
+  source:
+    infrahubAPIURL: "http://infrahub-server:8000"
+    targetBranch: "main"
+    artefactName: "sdc_srlinux_bgp_artifact"
   destination:
     reconcileOnEvents: true

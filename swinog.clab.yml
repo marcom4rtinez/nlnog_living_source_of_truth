@@ -8,6 +8,7 @@ prefix: ""
 mgmt:
   network: kind
   ipv4-subnet: 172.80.80.0/24
+  external-access: false
 
 topology:
   defaults:
@@ -91,7 +92,7 @@ topology:
       mgmt-ipv4: 172.80.80.42
       image: quay.io/prometheus/prometheus:v2.54.1
       binds:
-        - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+        - configs/prometheus/:/etc/prometheus/:ro
       cmd: --config.file=/etc/prometheus/prometheus.yml
       ports:
         - 9090:9090
