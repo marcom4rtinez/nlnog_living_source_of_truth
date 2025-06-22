@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "infrahub" {
-  api_key         = "184b2c4a-bc9f-e119-32fa-c51ecfe83c9b"
+  api_key         = "184b52a5-a01a-fd77-3025-c51534fc8c7c"
   infrahub_server = "http://localhost:8000"
-  branch          = "enable"
+  branch          = "main"
 }
 
 
@@ -73,7 +73,7 @@ resource "infrahub_device" "create_spines" {
 }
 
 resource "infrahub_l3interface" "ethernet1-1" {
-  for_each          = toset([for i in range(1, 3) : format("spine%d", i)])
+  for_each          = toset([for i in range(1, 2) : format("spine%d", i)])
   description_value = format("%s - ethernet-1/1", each.key)
   role_value        = "leaf"
   enabled_value     = true
@@ -81,6 +81,17 @@ resource "infrahub_l3interface" "ethernet1-1" {
   device_node_id    = infrahub_device.create_spines[each.key].id
   status_value      = "active"
 }
+
+resource "infrahub_l3interface" "ethernet1-1-spine2" {
+  description_value = "spine2 - ethernet-1/1"
+  role_value        = "leaf"
+  enabled_value     = true
+  name_value        = "ethernet-1/1"
+  device_node_id    = infrahub_device.create_spines["spine2"].id
+  status_value      = "active"
+  full_ipv4_value   = "192.168.12.1/31"
+}
+
 
 
 
@@ -116,7 +127,7 @@ resource "infrahub_l2interface" "ethernet1-1" {
   description_value = format("%s - ethernet-1/1", each.key)
   l2_mode_value     = "Access"
   role_value        = "leaf"
-  enabled_value     = true
+  enabled_value     = false
   name_value        = "ethernet-1/1"
   device_node_id    = infrahub_device.create_leaf[each.key].id
   status_value      = "active"

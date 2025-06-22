@@ -378,6 +378,10 @@ nodes:
       - "InfraInterface"
       - "InfraEndpoint"
       - "CoreArtifactTarget"
+    attributes:
+      - name: full_ipv4
+        kind: Text
+        order_weight: 1250
     # relationships:
     #   - name: ip_addresses
     #     peer: InfraIPAddress
