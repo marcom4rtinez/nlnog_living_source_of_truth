@@ -13,6 +13,7 @@ spec:
     - path: /
       value:
         interface:
+
         {% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
           - name: {{ interface.node.name.value }}
             admin-state: {% if interface.node.enabled.value == True %}"enable" {% else %}"disable"{% endif %}
