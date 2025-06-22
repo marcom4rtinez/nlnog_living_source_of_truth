@@ -16,19 +16,6 @@ spec:
           - name: default
             protocols:
               bgp:
-                admin-state: enable
-                autonomous-system: {{ data.InfraBGPSession.edges[0].node.device.node.asn.node.asn.value }}
-                router-id: {{ data.InfraBGPSession.edges[0].node.device.node.primary_address.node.address.ip }}
-                ebgp-default-policy:
-                  import-reject-all: false
-                  export-reject-all: false
-                group:
-                - group-name: {{ data.InfraBGPSession.edges[0].node.peer_group.node.name.value }}
-                  export-policy:
-                    {{ data.InfraBGPSession.edges[0].node.peer_group.node.export_policies.value }}
-                  afi-safi:
-                    - afi-safi-name: ipv4-unicast
-                      admin-state: enable
                 neighbor:
                 - peer-address: {{ data.InfraBGPSession.edges[0].node.remote_ip.node.address.ip }}
                   admin-state: enable
