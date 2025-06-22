@@ -33,7 +33,7 @@ spec:
 
                 ipv4:
                   address:
-                    - ip-prefix: {{ interface.node.ip_addresses.edges[0].node.address.value }}
+                    - ip-prefix: {{ interface.node.full_ipv4.value }}
             {% endif %}
         {% endfor %}
 
