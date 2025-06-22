@@ -112,14 +112,14 @@ generics:
         kind: Text
         optional: true
         order_weight: 1100
-      - name: speed
-        kind: Number
-        order_weight: 1400
-      - name: mtu
-        label: MTU
-        default_value: 1500
-        kind: Number
-        order_weight: 1500
+      # - name: speed
+      #   kind: Text
+      #   optional: true
+      #   order_weight: 1400
+      # - name: mtu
+      #   kind: Text
+      #   optional: true
+      #   order_weight: 1500
       - name: enabled
         kind: Boolean
         default_value: true
@@ -206,13 +206,13 @@ generics:
     description: "Generic Endpoint to connect two objects together."
     include_in_menu: false
     label: "Endpoint"
-    relationships:
-      - name: connected_endpoint
-        peer: InfraEndpoint
-        optional: true
-        cardinality: one
-        kind: Attribute
-        identifier: connected__endpoint
+    # relationships:
+    #   - name: connected_endpoint
+    #     peer: InfraEndpoint
+    #     optional: true
+    #     cardinality: one
+    #     kind: Attribute
+    #     identifier: connected__endpoint
 
 nodes:
   # --------------------  Device (Models, Platforms, Device, Interfaces )  --------------------
@@ -378,12 +378,16 @@ nodes:
       - "InfraInterface"
       - "InfraEndpoint"
       - "CoreArtifactTarget"
-    relationships:
-      - name: ip_addresses
-        peer: InfraIPAddress
-        optional: true
-        cardinality: many
-        kind: Component
+    attributes:
+      - name: full_ipv4
+        kind: Text
+        order_weight: 1250
+    # relationships:
+    #   - name: ip_addresses
+    #     peer: InfraIPAddress
+    #     optional: true
+    #     cardinality: many
+    #     kind: Component
   - name: InterfaceL2
     namespace: Infra
     description: "Network Layer 2 Interface"
@@ -405,18 +409,18 @@ nodes:
         kind: Text
         enum: ["Access", "Trunk"]
         order_weight: 1250
-    relationships:
-      - name: untagged_vlan
-        label: Untagged VLAN
-        peer: InfraVLAN
-        optional: true
-        cardinality: one
-        kind: Component
-        identifier: interface_l2__untagged_vlan
-      - name: tagged_vlan
-        label: Tagged VLANs
-        peer: InfraVLAN
-        optional: true
-        cardinality: many
-        kind: Component
-        identifier: interface_l2__tagged_vlan
+    # relationships:
+    #   - name: untagged_vlan
+    #     label: Untagged VLAN
+    #     peer: InfraVLAN
+    #     optional: true
+    #     cardinality: one
+    #     kind: Component
+    #     identifier: interface_l2__untagged_vlan
+    #   - name: tagged_vlan
+    #     label: Tagged VLANs
+    #     peer: InfraVLAN
+    #     optional: true
+    #     cardinality: many
+    #     kind: Component
+    #     identifier: interface_l2__tagged_vlan
