@@ -61,3 +61,5 @@ mutation {
 Create IP
 
 Add to nokia group
+
+start traffic
