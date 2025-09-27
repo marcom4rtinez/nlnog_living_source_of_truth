@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "infrahub-demo-dc-fabric"
+name = "nlnog"
 version = "0.1.0"
 description = ""
 authors = ["OpsMill <info@opsmill.com>"]
@@ -7,7 +7,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10, < 3.13"
-infrahub-sdk = {version = "1.12.3", extras = ["all"]}
+infrahub-sdk = {version = "1.14.0", extras = ["all"]}
 invoke = "^2.1.2"
 # nornir-infrahub = "^0, >=0.2.2"
 ansible-core = [
@@ -29,7 +29,7 @@ yamllint = "^1.35.1"
 ruff = "^0.11.4"
 mypy = "^1.14.1"
 pytest = "^8.3.3"
-infrahub-testcontainers = "1.2.12"
+infrahub-testcontainers = "1.4.6"
 pytest-asyncio = "^0.26.0"
 
 [tool.pytest.ini_options]

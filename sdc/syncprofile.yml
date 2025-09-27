@@ -5,14 +5,14 @@ metadata:
   namespace: default
 spec:
   buffer: 0
-  workers: 10
+  workers: 50
   validate: true
   sync:
   - name: config
     protocol: gnmi
     port: 57400
     paths:
-    - /
+      - /
     mode: get
     encoding: JSON_IETF
-    interval: 10s
+    interval: 2s

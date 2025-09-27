@@ -1,11 +1,4 @@
-# SWINOG 40
-
-Presentation (20min):
-- Vorstellung
-- Infrahub Einführung
-- Problem to solve (expand network with automation)
-- Demo (12min)
-- Fragen (3min)
+# NLNOG
 
 ## Tech Stack
 - [Terraform](https://developer.hashicorp.com/terraform/docs)

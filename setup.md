@@ -6,8 +6,8 @@ Deploy lab environment
 Important note: First start the containerlab environment, then create the kind cluster, otherwise there will be networking issues to connect them together.
 
 ```bash
-clab deploy swinog.clab.yml
-kind create cluster -n swinog
+clab deploy nlnog.clab.yml
+kind create cluster -n nlnog
 ```
 
 Setup infrahub
@@ -33,8 +33,8 @@ kubectl apply -f sdc/discoveryrule.yml
 mutation {
   CoreReadOnlyRepositoryCreate(
     data: {
-      name: { value: "swinog" },
-      location: { value: "https://github.com/marcom4rtinez/SwiNOG40_living_source_of_truth.git" },
+      name: { value: "nlnog" },
+      location: { value: "https://github.com/marcom4rtinez/nlnog_living_source_of_truth.git" },
       ref: { value: "main" },
     }
   ) {

@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "infrahub" {
-  api_key         = "184b9c5d-eb06-88fa-33b5-c51b046d3d40"
+  api_key         = "18674ce3-0ce4-19d6-38e1-c516046100c8"
   infrahub_server = "http://localhost:8000"
-  branch          = "main"
+  branch          = "maintenance"
 }
 
 
@@ -85,7 +85,7 @@ resource "infrahub_l3interface" "ethernet" {
   name_value        = each.value.intf_name
   description_value = "${each.value.spine} - ${each.value.intf_name}"
   role_value        = "leaf"
-  enabled_value     = true
+  enabled_value     = false
   device_node_id    = infrahub_device.create_spines[each.value.spine].id
   status_value      = "active"
   full_ipv4_value   = each.value.ip_addr
